@@ -17,10 +17,8 @@ const slides = [
 	}
 ]
 
-// index à 0 au départ
+//définition des variables pour l'index et éléments du DOM utiles pour le slider
 let i = 0;
-
-//définition des éléments du DOM utiles pour le slider
 let currentImage = document.querySelector(".banner-img");
 let currentTagLineP = document.querySelector(".tag-line");
 let dots = document.querySelectorAll(".dot");
@@ -34,45 +32,31 @@ dots[0].classList.add("dot_selected");
 
 // modifier le contenu des slides au clic sur la flèche de gauche
 arrowLeft.addEventListener("click", function() {
-	// on décrémente l'index
 	i--;
-	// si l'index actuel est inférieur à 0, afficher la dernière image du tableau
 	if (i < 0) {
 		i = slides.length - 1;
 	}
-	// faire apparaitre le contenu de l'index du tableau souhaité
 	currentImage.src = slides[i].image;
 	currentTagLineP.innerHTML = slides[i].tagLine;
-	// met à jour les points
 	updateDots();
 });
 
-// modifier le contenu des slides au clic sur la flèche de gauche
+// modifier le contenu des slides au clic sur la flèche de droite
 arrowRight.addEventListener("click", function() {
-	// on incrémente l'index
 	i++;
-	// si l'index actuel est supérieur à la dernière image du tableau, le remettre à 0
 	if (i > slides.length - 1) {
 		i = 0;
 	}
-	// faire apparaitre le contenu de l'index du tableau souhaité
 	currentImage.src = slides[i].image;
 	currentTagLineP.innerHTML = slides[i].tagLine
-	// met à jour les points
 	updateDots();
 });
 
-// modifier le contenu des slides au clic sur la flèche de gauche
 function updateDots() {
-	// parcours les éléments du "tableau" de dots créé avec le querySelectorAll.
-	// fonction exéctuée pour chq élément
-	// param : dot = élément du tableau
 	dots.forEach(function(dot) {
-		// supprime la classe dot_selected sur l'élément dot actuel
 		dot.classList.remove("dot_selected");
 	  });
 	
-	  // Ajoute la classe "dot_selected" au point correspondant au nouvel index
 	  dots[i].classList.add("dot_selected");
 }
 
